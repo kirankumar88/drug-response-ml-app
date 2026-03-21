@@ -1,6 +1,7 @@
 import streamlit as st
-import pickle
 import pandas as pd
+from joblib import load
+import os
 
 st.set_page_config(page_title="Drug Response Prediction", layout="centered")
 
@@ -17,9 +18,14 @@ st.markdown("### Upload Patient Data or Enter Manually")
 st.markdown("---")
 
 # Load model
-model = pickle.load(open("pipeline.pkl", "rb"))
-features = pickle.load(open("features.pkl", "rb"))
+import os
+import pickle
 
+model_path = os.path.join("model", "pipeline.pkl")
+features_path = os.path.join("model", "features.pkl")
+
+model = pickle.load(open(model_path, "rb"))
+features = pickle.load(open(features_path, "rb"))
 # Sample CSV
 sample_data = pd.DataFrame({
     "Blood Glucose Level (mg/dL)": [100],
@@ -46,6 +52,7 @@ if uploaded_file is not None:
     st.write("Uploaded Data")
     st.dataframe(data)
 
+    data = data[features]
     predictions = model.predict(data)
     probabilities = model.predict_proba(data)[:, 1]
 
@@ -55,7 +62,6 @@ if uploaded_file is not None:
     st.write("Prediction Results")
     st.dataframe(data)
 
-    # Download predictions
     st.download_button(
         label="Download Predictions CSV",
         data=data.to_csv(index=False),
