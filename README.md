@@ -10,7 +10,7 @@ The project includes exploratory data analysis, model training, evaluation, and 
 
 The Streamlit web application for this project is available at:
 Streamlit App:
-https://yourusername-drug-response-ml-app.streamlit.app
+https://drug-response-ml-app-5fgdrhtuf2gxpvwwczfkf6.streamlit.app/
 
 You can use the web application to:
 
@@ -103,7 +103,7 @@ These visualizations are available in the **images/** folder.
 ### 1. Clone the repository
 
 ```
-git clone https://github.com/YOURUSERNAME/drug-response-ml-app.git
+git clone https://github.com/kirankumar88/drug-response-ml-app.git
 cd drug-response-ml-app
 ```
 
